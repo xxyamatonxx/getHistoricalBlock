@@ -16,24 +16,24 @@ async function handler() {
   //3月末のblock
   const endSlot = 257597065
 
-  const slotAndDate:slotAndDate[] = []
+  const slotAndDateGroup:slotAndDate[] = []
   for (let i = latestSlot; i > endSlot; i-=60) {
     const date = await client.getBlockTimestamp(i);
-    const slotAndDatum:slotAndDate = {
+    const slotAndDate:slotAndDate = {
       slot: i,
       date: date,
     };
 
-    console.log(slotAndDatum);
+    console.log(slotAndDate);
 
-    if (isCloseToMidnight(slotAndDatum.date)) {
+    if (isCloseToMidnight(slotAndDate.date)) {
       console.log("対象発見");
-      console.log(slotAndDatum);
-      slotAndDate.push(slotAndDatum);
+      console.log(slotAndDate);
+      slotAndDateGroup.push(slotAndDate);
       i -= 170000;
     };
   };
-  console.log(slotAndDate);
-  return slotAndDate
+  console.log(slotAndDateGroup);
+  return slotAndDateGroup
 }
 handler();
