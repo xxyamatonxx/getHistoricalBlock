@@ -21,14 +21,6 @@ interface BlockResponse {
   },
 }
 
-interface PostRequest {
-  jsonrpc: string;
-  id: number;
-  method: string;
-  params: {};
-}
-
-
 
 export class AvalancheXRpcClient {
   constructor(private readonly endpoint:string) {
