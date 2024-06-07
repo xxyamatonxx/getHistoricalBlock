@@ -8,8 +8,6 @@ interface slotAndDate {
   date: Date;
 }
 
-const DAY_SECOND = 86400;
-
 async function handler() {
   const client = new SolanaRpcClient(ENDPOINT);
   // const latestSlot = await client.getLatestSlot();
@@ -29,7 +27,7 @@ async function handler() {
     console.log(slotAndDatum);
 
     if (isCloseToMidnight(slotAndDatum.date)) {
-      console.log(true);
+      console.log("対象発見");
       console.log(slotAndDatum);
       slotAndDate.push(slotAndDatum);
       i -= 170000;
@@ -38,20 +36,4 @@ async function handler() {
   console.log(slotAndDate);
   return slotAndDate
 }
-// async function handler() {
-//   const client = new SolanaRpcClient(ENDPOINT);
-//   // const latestSlot = await client.getLatestSlot();
-//   const latestSlot = 263197065
-
-//   const slotAndDate:slotAndDate[] = []
-//   for (let i = latestSlot; latestSlot > 0; i -= 40000) {
-//     const date = await client.getBlockTimestamp(i);
-//     const slotAndDatum:slotAndDate = {
-//       slot: i,
-//       date: date,
-//     };
-//     slotAndDate.push(slotAndDatum);
-//   }
-//   return slotAndDate
-// }
 handler();
