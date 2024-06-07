@@ -4,7 +4,7 @@ import { isCloseToMidnight } from "../helper/dateHelper";
 const ENDPOINT = "https://api.wemix.com";
 
 interface BlockAndDate {
-  date: Date,
+  date: Date | null,
   blockNumber: number,
 }
 
@@ -23,6 +23,10 @@ async function handler() {
     };
 
     console.log(blockAndDate);
+
+    if (blockAndDate.date === null) {
+        continue;
+    }
 
     if (isCloseToMidnight(blockAndDate.date)) {
       console.log("対象発見");

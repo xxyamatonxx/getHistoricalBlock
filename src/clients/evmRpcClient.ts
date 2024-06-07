@@ -29,7 +29,13 @@ export class EvmRpcClient implements IEvmRpcClient {
       params: [hexBlockNumber,false],
       id: 83,
     };
-    const { data: { result: { timestamp } } } = await axios.post(this.endpoint, requestData);
+    const response = await axios.post(this.endpoint, requestData);
+    const timestamp = response?.data?.result?.timestamp;
+    // timestampが存在しない場合の処理
+    if (!timestamp) {
+        return null; // または適切なデフォルト値やエラーハンドリング
+    }
+
     const unixTimestamp = parseInt(timestamp, 16);
     return unixToDate(unixTimestamp);
   }
