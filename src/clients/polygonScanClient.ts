@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "your api key";
+const API_KEY = "your_api_key";
 
 export class PolygonScanClient {
   constructor(private readonly rpc: string) {

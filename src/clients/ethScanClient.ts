@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "TQ8NURWRENH8Q47QBPQR551FK1V37UIXWV";
+const API_KEY = "your_api_key";
 
 export class EthScanClient {
   constructor(private readonly rpc: string) {
