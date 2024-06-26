@@ -1,6 +1,7 @@
 import axios from "axios";
+import { getConfig } from "../helper/configHelper";
 
-const API_KEY = "your_api_key";
+const API_KEY = getConfig("ApiKey.ethScan");
 
 export class EthScanClient {
   constructor(private readonly rpc: string) {

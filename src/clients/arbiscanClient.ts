@@ -1,6 +1,7 @@
 import axios from "axios";
+import { getConfig } from "../helper/configHelper";
 
-const API_KEY = "your_api_key";
+const API_KEY = getConfig("ApiKey.arbiScan");
 
 export class ArbScanClient {
   constructor(private readonly rpc: string) {
