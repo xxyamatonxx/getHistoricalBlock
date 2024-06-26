@@ -11,8 +11,8 @@ interface BlockAndDate {
 async function handler() {
   const client = new EvmRpcClient(ENDPOINT);
 
-  const startBlock = 44874300; // 5月の最初の方のblock
-  const endBlock = 43625900; // 3月末のblock
+  const startBlock = 46148600; // 6月の最初の方のblock
+  const endBlock = 44874210; // 4月末のblock
 
   try {
     const blockAndDateGroup: BlockAndDate[] = []
@@ -32,7 +32,7 @@ async function handler() {
         console.log("対象発見");
         console.log(blockAndDate);
         blockAndDateGroup.push(blockAndDate);
-        i -= 41000;
+        i -= 40000;
       };
     };
     console.log(blockAndDateGroup);
