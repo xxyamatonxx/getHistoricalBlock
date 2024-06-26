@@ -1,0 +1,7 @@
+{
+  "ApiKey": {
+    "polygonScan": "your_api_key",
+    "ethScan": "your_api_key",
+    "arbiScan": "your_api_key"
+  }
+}
