@@ -11,31 +11,37 @@ interface BlockAndDate {
 async function handler() {
   const client = new EvmRpcClient(ENDPOINT);
 
-  const startBlock = 48287100; // 5月の最初の方のblock
-  const endBlock = 45694927; // 3月末のblock
+  const startBlock = 50970000; // 6月1日のblock
+  const endBlock = 48286950; // 4月末のblock
 
-  const blockAndDateGroup:BlockAndDate[] = []
-  for (let i = startBlock; i > endBlock; i-=30) {
-    const date = await client.getBlockByNumber(i);
-    const blockAndDate:BlockAndDate = {
-      date: date,
-      blockNumber: i,
-    };
-
-    console.log(blockAndDate);
-
-    if (blockAndDate.date === null) {
-        continue;
-    }
-
-    if (isCloseToMidnight(blockAndDate.date)) {
-      console.log("対象発見");
+  const blockAndDateGroup: BlockAndDate[] = []
+  try {
+    
+    for (let i = startBlock; i > endBlock; i-=30) {
+      const date = await client.getBlockByNumber(i);
+      const blockAndDate:BlockAndDate = {
+        date: date,
+        blockNumber: i,
+      };
+      
       console.log(blockAndDate);
-      blockAndDateGroup.push(blockAndDate);
-      i -= 86000;
+      
+      if (blockAndDate.date === null) {
+        continue;
+      }
+      
+      if (isCloseToMidnight(blockAndDate.date)) {
+        console.log("対象発見");
+        console.log(blockAndDate);
+        blockAndDateGroup.push(blockAndDate);
+        i -= 86000;
+      };
     };
-  };
-  console.log(blockAndDateGroup);
-  return blockAndDateGroup
+    console.log(blockAndDateGroup);
+    return blockAndDateGroup
+  } catch (e: any) {
+    console.error(e.message)
+    throw new Error(e);
+  }
 }
 handler()
