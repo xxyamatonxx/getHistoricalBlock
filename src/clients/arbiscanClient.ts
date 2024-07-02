@@ -8,7 +8,7 @@ export class ArbScanClient {
   }
 
   async getBlockNumberByUnix(unixTimestamp:number):Promise<number> {
-    const requestPath = ` ?module=block&action=getblocknobytime&timestamp=${unixTimestamp}&closest=before&apikey=${API_KEY}`;
+    const requestPath = `?module=block&action=getblocknobytime&timestamp=${unixTimestamp}&closest=before&apikey=${API_KEY}`;
     const { data: { result } } = await axios.get(`${this.rpc}${requestPath}`);
     return Number(result);
   }
