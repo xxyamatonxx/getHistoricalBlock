@@ -30,6 +30,7 @@ async function handler() {
       console.log("対象発見");
       console.log(slotAndDate);
       slotAndDateGroup.push(slotAndDate);
+      // 大体1日くらい遡る
       i -= 170000;
     };
   };

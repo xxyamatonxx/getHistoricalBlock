@@ -27,6 +27,7 @@ async function handler() {
       console.log("対象発見");
       console.log(checkoutAndDate);
       checkpointAndDateGroup.push(checkoutAndDate);
+      // 大体1日くらい遡る
       i -= 86000;
     };
   };
